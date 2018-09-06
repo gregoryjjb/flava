@@ -6,6 +6,10 @@ app.use(express.json());
 
 const api = express.Router();
 
+api.get('/hellothere', (req, res) => {
+    res.json({ message: 'General Kenobi!' });
+})
+
 app.use('/api', api);
 
 app.get('/test', (req, res) => {

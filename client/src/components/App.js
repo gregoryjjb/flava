@@ -1,8 +1,9 @@
 import React from 'react';
 
-const App =({ }) => (
+const App =({ message }) => (
 	<div>
 		<h1>Welcome to Flavatown</h1>
+		<h2>Hello there... {message}</h2>
 	</div>
 )
 
