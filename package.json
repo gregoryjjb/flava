@@ -1,0 +1,16 @@
+{
+  "name": "flava",
+  "version": "1.0.0",
+  "description": "Welcome to flavatown",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
