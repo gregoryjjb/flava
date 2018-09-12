@@ -9,6 +9,8 @@
         "pretty": "prettier --write \"**/*.{js,json}\""
     },
     "devDependencies": {
+        "eslint": "^5.5.0",
+        "eslint-plugin-prettier": "^2.6.2",
         "nodemon": "^1.18.4",
         "prettier": "^1.14.2"
     },
