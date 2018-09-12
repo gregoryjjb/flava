@@ -1,10 +1,9 @@
 {
     "plugins": ["prettier"],
     "rules": {
-      "prettier/prettier": "error"
+        "prettier/prettier": "error"
     },
     "parserOptions": {
-      "ecmaVersion": 6
+        "ecmaVersion": 6
     }
-  }
-  
+}
