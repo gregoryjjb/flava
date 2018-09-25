@@ -1,10 +1,14 @@
 const express = require("express");
 const fs = require("fs");
 
+const account = require("./routes/account");
+
 const app = express();
 app.use(express.json());
 
 const api = express.Router();
+
+api.use("/account", account);
 
 api.get("/hellothere", (req, res) => {
     res.json({ message: "General Kenobi!" });
