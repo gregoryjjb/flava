@@ -1,6 +1,8 @@
 const { OAuth2Client } = require("google-auth-library");
 
-const audience = process.env.GOOGLE_CLIENT_ID;
+//const audience = process.env.GOOGLE_CLIENT_ID;
+const audience =
+    "489162778339-4rs3l13uu58q22goo4enlo2akq3egejm.apps.googleusercontent.com";
 
 const gapiClient = new OAuth2Client(audience, "", "");
 
@@ -33,3 +35,5 @@ const parser = (idToken, onSuccess, onFailure) => {
         onFailure({ message: "No audience specified" });
     }
 };
+
+module.exports = parser;
