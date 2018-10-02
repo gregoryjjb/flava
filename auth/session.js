@@ -12,6 +12,10 @@ const generateKey = seed => {
     return sha.digest("hex");
 };
 
+/**
+ * Generate a session key that doesn't exist already
+ * @param {any} seed Seed for the random generation
+ */
 const generateSafeKey = async seed => {
     let key = null;
 

@@ -7,7 +7,7 @@ const parseToken = require("../auth/parse-token");
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
-    const { token, sessionId } = req.body;
+    const { token, sessionKey } = req.body;
 
     if (token) {
         parseToken(
@@ -40,6 +40,7 @@ router.post("/login", async (req, res) => {
                     const key = await generateSafeKey(token.substr(0, 30));
                     const session = await models.Session.create({
                         key,
+                        valid: true,
                         userId: user.id,
                     });
 
@@ -65,8 +66,27 @@ router.post("/login", async (req, res) => {
                 });
             }
         );
-    } else if (sessionId) {
+    } else if (sessionKey) {
         // Resume old session
+        const session = await models.Session.findOne({
+            where: { key: sessionKey },
+        });
+
+        try {
+            // Verify session
+            if (!session) throw "Session key invalid";
+            if (session.valid !== true) throw "Session expired";
+
+            // Verify user
+            const user = await session.getUser();
+            if (!user) throw "User not found for session";
+
+            res.json({ user });
+        } catch (err) {
+            res.status(400).json({
+                error: err,
+            });
+        }
     } else {
         res.status(400).json({
             error: "No session ID or token sent",
