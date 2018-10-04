@@ -1,3 +1,7 @@
+const dotenv = require("dotenv");
+dotenv.config();
+dotenv.config({ path: ".env.local" });
+
 const http = require("http");
 
 const app = require("./app");
@@ -9,7 +13,7 @@ const env = process.env.NODE_ENV || "development";
 let server;
 
 models.sequelize
-    .sync()
+    .sync({ force: true })
     .then(() => {
         server = http.createServer(app);
         server.listen(port);
