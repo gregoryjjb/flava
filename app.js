@@ -1,10 +1,12 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const fs = require("fs");
 
 const account = require("./routes/account");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 const api = express.Router();
 

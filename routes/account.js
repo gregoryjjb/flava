@@ -94,4 +94,16 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.get("/logout", async (req, res) => {
+    const key = req.cookies.sessionKey;
+
+    if (key) {
+        const session = await models.Session.findOne({ where: { key } });
+
+        if (session) await session.update({ valid: false });
+    }
+
+    res.status(200).end();
+});
+
 module.exports = router;
