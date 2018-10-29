@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             isEmail: true,
         },
+        age: DataTypes.INTEGER,
+        height: DataTypes.INTEGER,
+        weight: DataTypes.INTEGER,
+        longestDistance: DataTypes.INTEGER,
+        bestMileTime: DataTypes.FLOAT,
     });
 
     User.associate = models => {
