@@ -24,4 +24,17 @@ router.post("/info", async (req, res) => {
     res.json(user);
 });
 
+router.get("/plan/:goal", async (req, res) => {
+    const { goal } = req.params;
+    const { userId } = res.locals;
+
+    const user = await models.User.findOne({ where: { id: userId } });
+
+    if (user) {
+        res.json({ weeklyMiles: 420 });
+    } else {
+        res.status(401).end("No user logged in");
+    }
+});
+
 module.exports = router;
