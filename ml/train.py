@@ -9,12 +9,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
 from pandas.plotting import scatter_matrix
 from pandas import set_option
 from pandas import read_csv
 import statsmodels.api as sm
+
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.externals import joblib
 
 filename = 'responses.csv'
 
@@ -29,7 +31,7 @@ data = data.apply(pd.to_numeric)
 # Randomize rows
 data = data.sample(frac=1).reset_index(drop=True)
 
-
+"""
 
 # Histogram
 plt.figure()
@@ -51,7 +53,7 @@ plt.figure()
 scatter_matrix(data)
 plt.show()
 
-
+"""
 
 #data_x = data.columns[0] # data.drop(data.columns[0], axis=1)
 #data_y = data.columns[4] # data.drop(data.columns[4], axis=1)
@@ -94,19 +96,6 @@ plt.yticks(())
 
 plt.show()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+joblib.dump(regr, 'model.joblib')
 
 print("Donezo")

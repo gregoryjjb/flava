@@ -1,5 +1,14 @@
+# NPM dependencies
 node_modules/
 
+# SQLite databases
 *.sqlite
 
+# ENV files
 *.env.local
+
+#########
+# Python
+
+# Joblib python objects
+*.joblib
