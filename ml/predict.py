@@ -14,7 +14,7 @@ arg = float(sys.argv[1])
 # Import model
 regr = joblib.load('model.joblib')
 
-x = np.array([ 420 ]).reshape(-1, 1)
+x = np.array([ arg ]).reshape(-1, 1)
 
 prediction = regr.predict(x)
 

@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
         parseToken(
             token,
             async payload => {
-                console.log("Google ID", payload.sub);
+                //console.log("Google ID", payload.sub);
                 let firstLogin = false;
 
                 // Check if user already exists

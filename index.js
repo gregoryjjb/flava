@@ -13,7 +13,7 @@ const env = process.env.NODE_ENV || "development";
 let server;
 
 models.sequelize
-    .sync({ force: true })
+    .sync({ force: false })
     .then(() => {
         server = http.createServer(app);
         server.listen(port);
