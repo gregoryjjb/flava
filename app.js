@@ -24,8 +24,10 @@ app.get("/test", (req, res) => {
     res.send("Node server running");
 });
 
+app.use(express.static("www"));
+
 // Main page
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
     const indexHtml = __dirname + "/www/index.html";
 
     // Check to see if the front end exists first
@@ -37,7 +39,5 @@ app.get("/", (req, res) => {
         );
     }
 });
-
-app.use(express.static("www"));
 
 module.exports = app;
