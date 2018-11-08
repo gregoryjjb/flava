@@ -39,7 +39,8 @@ router.get("/plan/:goal", async (req, res) => {
         if (isNaN(goalNum)) {
             return res.status(400).end("Goal must be a number");
         } else {
-            const cmd = `python predict.py ${goalNum}`;
+            const py = process.env.PYTHON_BIN || "python";
+            const cmd = `${py} predict.py ${goalNum}`;
             const { stdout, stderr } = await exec(cmd, { cwd: "./ml" });
 
             res.json({ weeklyMiles: Number(stdout).toPrecision(2) });
