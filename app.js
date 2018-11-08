@@ -26,18 +26,18 @@ app.get("/test", (req, res) => {
 
 // Main page
 app.get("/", (req, res) => {
-    const indexHtml = __dirname + "/client/build/index.html";
+    const indexHtml = __dirname + "/www/index.html";
 
     // Check to see if the front end exists first
     if (fs.existsSync(indexHtml)) {
-        res.sendFile(__dirname + "/client/build/index.html");
+        res.sendFile(__dirname + "/www/index.html");
     } else {
         res.send(
-            "Node server running, client/build/index.html not found. You may have forgot to build the frontend."
+            "Node server running, /www/index.html not found. You may have forgot to build the frontend."
         );
     }
 });
 
-app.use(express.static("client/build"));
+app.use(express.static("www"));
 
 module.exports = app;

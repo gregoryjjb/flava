@@ -7,6 +7,9 @@ node_modules/
 # ENV files
 *.env.local
 
+# Frontend build
+www/
+
 #########
 # Python
 
