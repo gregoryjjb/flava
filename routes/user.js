@@ -27,14 +27,16 @@ router.post("/info", async (req, res) => {
     res.json(user);
 });
 
-router.get("/plan/:goal", async (req, res) => {
-    const { goal } = req.params;
+router.put("/plan", async (req, res) => {
+    const { currentWeekly, goalDistance, weeks } = req.body;
     const { userId } = res.locals;
 
     const user = await models.User.findOne({ where: { id: userId } });
 
     if (user) {
-        const goalNum = Number(goal);
+        const currentNum = Number(currentWeekly);
+        const goalNum = Number(goalDistance);
+        const weeksNum = Number(weeks);
 
         if (isNaN(goalNum)) {
             return res.status(400).end("Goal must be a number");
@@ -43,7 +45,16 @@ router.get("/plan/:goal", async (req, res) => {
             const cmd = `${py} predict.py ${goalNum}`;
             const { stdout, stderr } = await exec(cmd, { cwd: "./ml" });
 
-            res.json({ weeklyMiles: Number(stdout).toPrecision(2) });
+            const targetWeekly = Math.round(Number(stdout));
+            const increment = (targetWeekly - currentNum) / weeksNum;
+
+            let weeklyPlan = [];
+
+            for (let i = 1; i <= weeksNum; i++) {
+                weeklyPlan.push(Math.round(currentNum + increment * i));
+            }
+
+            res.json({ weeklyTarget: targetWeekly, weeklyPlan });
         }
     } else {
         res.status(401).end("No user logged in");
