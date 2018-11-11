@@ -62,8 +62,8 @@ plt.show()
 array = data.values
 
 # Pull 
-arr_x = array[:, 0:1] # Weekly miles run
-arr_y = array[:, 4:5] # Fastest mile time
+arr_y = array[:, 0:1] # Weekly miles run
+arr_x = array[:, 4:5] # Fastest mile time
 
 ntest = 10
 
