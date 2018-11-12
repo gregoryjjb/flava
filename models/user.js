@@ -15,6 +15,13 @@ module.exports = (sequelize, DataTypes) => {
         weight: DataTypes.INTEGER,
         longestDistance: DataTypes.INTEGER,
         bestMileTime: DataTypes.FLOAT,
+        // Plan stuff
+        currentWeekly: DataTypes.INTEGER,
+        targetDistance: DataTypes.INTEGER,
+        timespanWeeks: DataTypes.INTEGER,
+        weeklyTarget: DataTypes.INTEGER,
+        weeklyPlan: DataTypes.JSON,
+        dailyPlan: DataTypes.JSON,
     });
 
     User.associate = models => {

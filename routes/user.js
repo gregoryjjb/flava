@@ -79,7 +79,16 @@ router.put("/plan", async (req, res) => {
                 }
             });
 
-            res.json({ weeklyTarget: targetWeekly, weeklyPlan, dailyPlan });
+            await user.update({
+                currentWeekly: currentNum,
+                targetDistance: goalNum,
+                timespanWeeks: weeksNum,
+                weeklyTarget: targetWeekly,
+                weeklyPlan,
+                dailyPlan,
+            });
+
+            res.json(user);
         }
     } else {
         res.status(401).end("No user logged in");
