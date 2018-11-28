@@ -88,9 +88,7 @@ router.put("/plan", async (req, res) => {
             const dailyMin = Math.min(...clean(dailyPlan));
             const dailyMax = Math.max(...clean(dailyPlan));
 
-            console.log("Min is", dailyMin, "max is", dailyMax);
-
-            const trails = [getTrail(dailyMin)];
+            const trails = getTrail(dailyMin);
 
             await user.update({
                 currentWeekly: currentNum,
