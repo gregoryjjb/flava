@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         weeklyTarget: DataTypes.INTEGER,
         weeklyPlan: DataTypes.JSON,
         dailyPlan: DataTypes.JSON,
+        trails: DataTypes.JSON,
     });
 
     User.associate = models => {
