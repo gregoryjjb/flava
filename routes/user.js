@@ -1,4 +1,5 @@
 const util = require("util");
+const getTrail = require("../config/trails");
 const exec = util.promisify(require("child_process").exec);
 
 const express = require("express");
@@ -79,6 +80,16 @@ router.put("/plan", async (req, res) => {
                 }
             });
 
+            const flatten = arr =>
+                arr.reduce((flat, next) => flat.concat(next), []);
+
+            const clean = arr => flatten(arr).filter(n => n > 0);
+
+            const dailyMin = Math.min(...clean(dailyPlan));
+            const dailyMax = Math.max(...clean(dailyPlan));
+
+            const trails = getTrail(dailyMin, dailyMax);
+
             await user.update({
                 currentWeekly: currentNum,
                 targetDistance: goalNum,
@@ -86,6 +97,7 @@ router.put("/plan", async (req, res) => {
                 weeklyTarget: targetWeekly,
                 weeklyPlan,
                 dailyPlan,
+                trails,
             });
 
             res.json(user);
